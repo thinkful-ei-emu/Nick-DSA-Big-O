@@ -29,23 +29,26 @@
 
 // #10
 // This algorithm checks if a number is divisible by factors of two and greater than 1. 
-// The big O for this algorithm is O(nlogn) because it checks the input against a constantly doubling field.
+// The big O for this algorithm is O(n) because it has one for loop.
 
 
 // #11
 function TOH(n, a, c, b) {
 
   if (n >= 1) {
+    // console.log('Before',a, c, b);
     TOH(n - 1, a, b, c);
     print(a, c);
+    // console.log('After',a, c, b);
     TOH(n - 1, b, c, a);
   }
 }
+
 function print(S, D) {
   console.log(`${S} to ${D}`);
 }
 
-// TOH(3, 'a', 'c', 'b');
+// TOH(4, 'a', 'c', 'b');
 
 // #12
 
@@ -92,13 +95,15 @@ function powerCalculator(base, exp) {
 function reverseString(str) {
 
   let strArr = str.split('');
-  let backwardsArr = [];
 
-  for (let i = str.length - 1; i >= 0; i--) {
-    backwardsArr.push(strArr[i]);
+  for (let i = 0; i < str.length/2; i++) {
+    const temp = strArr[i];
+    let j = str.length - i - 1;
+    strArr[i] = strArr[j];
+    strArr[j] = temp;
   }
 
-  let newString = backwardsArr.join('');
+  let newString = strArr.join('');
 
   console.log(newString);
 
@@ -135,10 +140,7 @@ function fibonacci(num){
   let fibArr = [];
 
   for (let i = 0; i < num; i ++){
-    if (i === 0){
-      fibArr.push(1);
-    }
-    else if (i === 1){
+    if (i < 2){
       fibArr.push(1);
     }
     else {
@@ -167,4 +169,4 @@ function factorial(num){
   console.log(factNum);
 }
 
-factorial(6);
+// factorial(6);
